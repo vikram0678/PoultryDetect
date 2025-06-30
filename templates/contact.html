@@ -1,0 +1,243 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="static/0_Poultry_Detect_icon.png">
+    <title>Poultry Detect</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #272727;
+            padding: 7px;
+            color: white;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            color: #4CAF50;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #ffffff;
+        }
+        .content {
+            padding: 40px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        form {
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #65f56d;
+            color: rgb(0, 0, 0);
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Poultry Detect</h1>
+    </header>
+    <nav>
+        <a href="/">HOME</a> | <a href="/predict">PREDICTION PAGE</a>
+    </nav>
+    <div class="content">
+        <h2>Prediction</h2>
+        <h3>Image Classification</h3>
+        <form method="post" enctype="multipart/form-data">
+            <p>Upload Your Image: <input type="file" name="image"></p>
+            <button type="submit" class="button">Predict</button>
+        </form>
+        {% if predict %}
+        <p>Hence, the infection type detected as: <strong>{{ predict }}</strong></p>
+        {% endif %}
+    </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="static/0_Poultry_Detect_icon.png">
+    <title>Poultry Detect</title>
+    <style>
+        html, body {
+        height: 100%;
+        margin: 0;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #272727;
+            padding: 7px;
+            color: white;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav a {
+            color: #4CAF50;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #ffffff;
+        }
+        .content {
+            padding: 40px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        form {
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #65f56d;
+            color: rgb(0, 0, 0);
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        .site-footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        background-color: #222;
+        color: #fff;
+        text-align: center;
+        padding: 20px 10px;
+        font-size: 14px;
+        }
+
+        .site-footer a {
+        color: #aaa;
+        text-decoration: none;
+        margin: 0 10px;
+        }
+
+        .site-footer a:hover {
+        color: #fff;
+        text-decoration: underline;
+        }
+    </style>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const fileInput = document.querySelector('input[name="image"]');
+            const file = fileInput.files[0];
+            const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+
+            if (!file) {
+                alert('Please select an image file to upload.');
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+
+            if (!validImageTypes.includes(file.type)) {
+                alert('Please upload a valid image file (e.g., .jpg, .jpeg, .png, .webp, or .gif).');
+                event.preventDefault(); // Prevent form submission
+                return;
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Poultry Detect</h1>
+    </header>
+    <nav>
+        <a href="/">HOME</a> | <a href="/predict">PREDICTION PAGE</a>
+    </nav>
+    <div class="content">
+        <h2>Prediction</h2>
+        <h3>Image Classification</h3>
+        <form method="post" enctype="multipart/form-data">
+            <p>Upload Your Image: <input type="file" name="image"></p>
+            <button type="submit" class="button">Predict</button>
+        </form>
+        {% if predict %}
+        <p>Hence, the infection type detected as: <strong>{{ predict }}</strong></p>
+        {% endif %}
+    </div>
+    <footer class="site-footer">
+        <div class="footer-content">
+        <p>&copy; 2025 . All rights reserved.</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a>
+        </p>
+        </div>
+    </footer>
+</body>
+</html>
